@@ -1,0 +1,66 @@
+<form>
+    <div class="form-group">
+      <label for="articleName">Articel Name</label>
+      <input  [(ngModel)]="formData.articleName" (change)="formDataModificationInd=true"  name="articleName" type="text" class="form-control" id="articleName" placeholder="Enter Article Name"> 
+      <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+  </div>
+    <div class="form-group">
+      <label for="shortDescrption">Short Description</label>
+      <input [(ngModel)]="formData.shortDescription" (change)="formDataModificationInd=true" name="shortDescrption" type="text" class="form-control" id="shortDescrption" placeholder="Enter Short Description">
+    </div>
+    <div class="form-group">
+      <label for="urlId">Article URL</label>
+      <input [(ngModel)]="formData.url" (change)="formDataModificationInd=true" name="urlName" type="text" class="form-control" id="urlId" placeholder="Enter Short Description">
+    </div>
+    <div class="form-group">
+      <label for="publishedDate">Publishtion Date {{formData.publishedDate}}</label>
+      <input [(ngModel)]="formData.publishedDate" (change)="formDataModificationInd=true" name="publishedDateName" type="date" class="form-control" id="publishedDate" placeholder="Enter Short Description">
+    </div>
+    <div class="form-group">
+      <label for="tagId">Tags</label>
+      <select class="form-control" id="tagId" [(ngModel)]="tag" name="tag" (change)="tagAdded(tag)" >
+        <option [hidden]="formData.tags.indexOf(tag)>=0" *ngFor="let tag of tagList" value="{{tag}}">{{tag}}</option>
+      </select>
+    </div>
+    <button  *ngFor="let tag of formData.tags"  type="button" class="btn btn-primary" aria-label="Close">
+      <span aria-hidden="true" (click)="formData.tags.pop(tag);formDataModificationInd=true">{{tag}}&nbsp; &times;</span>
+    </button>
+    <div class="form-group">
+      <label for="statusId">Form Status : <span style="color: red">{{formData.publishStatus}}</span></label>
+      <select class="form-control" id="statusId" [(ngModel)]="status" name="statusName" (change)="formData.publishStatus=status;formDataModificationInd=true" >
+        <option  *ngFor="let status of ['Publish','Draft']"  value="{{status}}">{{status}}</option>
+      </select>
+    </div>
+    <textarea  [froalaEditor]='options' (change)="formDataModificationInd=true" [(froalaModel)]="formData.htmlContent">Hello, Froala!</textarea>
+    <button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">Submit</button>
+    <!-- <div [innerHtml] = "editorContent | safeHtml"></div> -->
+    <!-- " -->
+
+  </form>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Save Article</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <div *ngIf="triedSaving==1"> Saving..<span class="spinner-grow spinner-grow-sm"></span><span class="spinner-grow spinner-grow-sm"></span><span class="spinner-grow spinner-grow-sm"></span></div>
+           <div *ngIf="triedSaving==2" class="alert alert-success">
+            <strong>Article Saved successfully.</strong> 
+          </div>
+           <div *ngIf="triedSaving==3" class="alert alert-danger">
+              <strong>Saving failed!! Please try again.</strong> 
+            </div>
+            
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button [disabled]="triedSaving==2 && !formDataModificationInd" type="button" class="btn btn-primary" (click)="saveArticle()">Save Article</button>
+        </div>
+      </div>
+    </div>
+  </div>
