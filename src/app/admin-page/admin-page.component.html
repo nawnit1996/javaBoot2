@@ -1,0 +1,61 @@
+  <div class="col-sm-12">
+      <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link " [class.active]="activeTab" (click)="viewArticle()">Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link "[class.active]="!activeTab" (click)="addNewArticle()">Add/Edit Article</a>
+          </li> 
+         
+        </ul>
+        <div *ngIf="activeTab" class="card" style="background-color: royalblue" >
+          <ul class="list-group list-group-">
+            <li class="list-group-item">
+              <div class="row card-header"  style="background-color:skyblue">
+                <div class="col-sm-2">
+                  Serial No.
+                </div>
+                <div class="col-sm-4">
+                 Article Title
+                </div>
+                <div class="col-sm-2">
+                  Status
+                </div>
+                <div class="col-sm-1">
+                  Edit
+                </div>
+                <div class="col-sm-1">
+                  Preview
+                </div>
+                <div class="col-sm-2">
+                  Delete
+                </div>
+              </div>
+            </li>
+            <!-- *ngFor="let article in articleList" -->
+            <li class="list-group-item"   *ngFor="let article of articleList; let i = index" >
+              <div class="row card-header" [ngStyle]="i%2==0 && {'background-color':'thistle'}">
+                <div class="col-sm-2">
+                  {{i+1}}
+                </div>
+                <div class="col-sm-4">
+                  {{article.articleName}}
+                </div>
+                <div class="col-sm-2">
+                  {{article.publishStatus}}
+                </div>
+                <div class="col-sm-1">
+                  <button type="button" (click)="editArticle(article.url)"class="btn btn-primary">Edit</button>
+                </div>
+                <div class="col-sm-1">
+                  <button type="button" class="btn btn-dark">Preview</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-danger" (click)="deleteArticle(article.url)">Delete</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <app-new-page [pageurl]="editUrl" [hidden]="activeTab" ></app-new-page>
+  </div>
