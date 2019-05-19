@@ -9,12 +9,14 @@ import { NewPageComponent } from './new-page/new-page.component';
 import { GistModule } from '@sgbj/angular-gist';
 import { GistComponent } from './gist/gist.component';
 import {DynamicHTMLModule}  from 'ng-dynamic';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+// import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { HttpClientModule }    from '@angular/common/http';
+import { FocusInputDirective } from "./directives/FocusInputDirective";
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { HttpClientModule }    from '@angular/common/http';
     SafeHtmlPipe,
     NewPageComponent,
     GistComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    FocusInputDirective,
+
   ],
   imports: [
     BrowserModule,
@@ -36,14 +40,15 @@ import { HttpClientModule }    from '@angular/common/http';
         { component: GistComponent, selector: 'gist' },
       ]
     }),
-    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
+    // FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    MatInputModule
+    MatInputModule,
+    CKEditorModule
   ],
-  providers: [],
+  providers: [{ provide: 'Window',  useValue: window }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

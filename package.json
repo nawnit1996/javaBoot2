@@ -22,6 +22,8 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+    "@ckeditor/ckeditor5-angular": "^1.1.0",
+    "@ckeditor/ckeditor5-build-classic": "file:../../../Documents/git/ckeditor5-build-classic",
     "@sgbj/angular-gist": "^0.3.0",
     "angular-froala-wysiwyg": "^2.9.3",
     "core-js": "^2.5.4",

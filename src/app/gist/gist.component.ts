@@ -6,9 +6,10 @@ import {OnMount} from 'ng-dynamic';
   styleUrls: ['./gist.component.css']
 })
 export class GistComponent implements OnInit ,OnMount{
-  @Input() gisturl: String;
+  gisturl: String;
   dynamicOnMount(attr: Map<string, string>, content: string) {
     this.gisturl = Array.from(attr.values())[0];
+    console.log(attr.values())
     console.log('attr :'+this.gisturl );
     // console.log('cont :'+content)
     console.log(Array.from(attr.keys())[0])

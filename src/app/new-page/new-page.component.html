@@ -31,13 +31,15 @@
         <option  *ngFor="let status of ['Publish','Draft']"  value="{{status}}">{{status}}</option>
       </select>
     </div>
-    <textarea  [froalaEditor]='options' (change)="formDataModificationInd=true" [(froalaModel)]="formData.htmlContent">Hello, Froala!</textarea>
+
+    <!-- <textarea class="selector" [froalaEditor]='options' (change)="formDataModificationInd=true" [(froalaModel)]="formData.htmlContent">Hello, Froala!</textarea> -->
     <button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">Submit</button>
     <!-- <div [innerHtml] = "editorContent | safeHtml"></div> -->
-    <!-- " -->
-
+    <!-- " -->  
+    
   </form>
-
+  <ckeditor class="selector" (change)="formDataModificationInd=true" [config]="{ uploadUrl: 'http://localhost:8080/admin/uploadFile',allowedContent :'true' }"  [(ngModel)]="formData.htmlContent" [editor]="Editor"></ckeditor>
+<input type="text" style="width:100%" [(ngModel)]="formData.htmlContent" />
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -59,7 +61,7 @@
           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button [disabled]="triedSaving==2 && !formDataModificationInd" type="button" class="btn btn-primary" (click)="saveArticle()">Save Article</button>
+          <button  type="button" class="btn btn-primary" (click)="saveArticle()">Save Article</button>
         </div>
       </div>
     </div>

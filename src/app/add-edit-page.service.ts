@@ -26,6 +26,7 @@ export class AddEditPageService {
   }
 
   saveArticle(article : FormDetail):Observable<Boolean>{
+    
     httpOptions.headers.append('Access-Control-Allow-Origin', 'http://localhost:8080');
 
     return this.http.post<Boolean>("http://localhost:8080/admin/saveArticle", article,httpOptions);

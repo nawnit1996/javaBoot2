@@ -33,8 +33,7 @@
               "./node_modules/bootstrap/lib/popper.min.js",
               "./node_modules/bootstrap/lib/jquery.min.js",
               "./node_modules/bootstrap/lib/bootstrap.min.js",
-              "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/froala-editor/js/froala_editor.pkgd.min.js"
+              "./node_modules/jquery/dist/jquery.js"
             ]
           },
           "configurations": {
